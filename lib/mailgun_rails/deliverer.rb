@@ -21,7 +21,7 @@ module MailgunRails
     end
 
     def deliver!(rails_message)
-      response = mailgun_client.send_message build_mailgun_message_for(rails_message)
+      response = mailgun_client(rails_message).send_message build_mailgun_message_for(rails_message)
       if response.code == 200
         mailgun_message_id = JSON.parse(response.to_str)["id"]
         rails_message.message_id = mailgun_message_id
@@ -125,8 +125,9 @@ module MailgunRails
                                                value.respond_to?(:empty?) && value.empty? }
     end
 
-    def mailgun_client
-      @maingun_client ||= Client.new(api_key, domain, verify_ssl)
+    def mailgun_client(rails_message)
+      @mailgun_client ||=
+        Client.new(rails_message.mailgun_api_key || api_key, rails_message.mailgun_domain || domain, verify_ssl)
     end
   end
 end
