@@ -127,7 +127,7 @@ module MailgunRails
 
     def mailgun_client(rails_message)
       @mailgun_client ||=
-        Client.new(rails_message.mailgun_api_key || api_key, rails_message.mailgun_domain || domain, verify_ssl)
+        Client.new(rails_message.mailgun_api_key || api_key, rails_message.mailgun_domain || domain, verify_ssl, rails_message.mailgun_host)
     end
   end
 end

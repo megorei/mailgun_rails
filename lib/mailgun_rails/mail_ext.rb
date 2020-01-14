@@ -7,5 +7,6 @@ module Mail
 
     attr_accessor :mailgun_api_key
     attr_accessor :mailgun_domain
+    attr_accessor :mailgun_host
   end
 end
