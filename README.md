@@ -20,7 +20,8 @@ To configure your Mailgun credentials place the following code in the correspond
 config.action_mailer.delivery_method = :mailgun
 config.action_mailer.mailgun_settings = {
 		api_key: '<mailgun api key>',
-		domain: '<mailgun domain>'
+		domain: '<mailgun domain>',
+		api_host: '<mailgun api host>' # default 'api.mailgun.net'
 }
 ```
 
@@ -28,7 +29,7 @@ Now you can send emails using plain Action Mailer:
 
 ```ruby
 email = mail from: 'sender@email.com', to: 'receiver@email.com', subject: 'this is an email'
-or 
+or
 email = mail from: 'Your Name Here <sender@email.com>', to: 'receiver@email.com', subject: 'this is an email'
 ```
 
@@ -59,5 +60,3 @@ email.mailgun_options = {campaign: '1'}
 ```
 
 Pull requests are welcomed
-
-
