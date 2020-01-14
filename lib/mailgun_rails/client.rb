@@ -3,13 +3,13 @@ require 'rest_client'
 
 module MailgunRails
   class Client
-    attr_reader :api_key, :domain, :verify_ssl
+    attr_reader :api_key, :domain, :verify_ssl, :api_host
 
-    def initialize(api_key, domain, verify_ssl = true, mailgun_host = 'api.mailgun.net')
+    def initialize(api_key, domain, verify_ssl = true, api_host = 'api.mailgun.net')
       @api_key = api_key
       @domain = domain
       @verify_ssl = verify_ssl
-      @mailgun_host = mailgun_host
+      @api_host = api_host
     end
 
     def send_message(options)
@@ -26,7 +26,7 @@ module MailgunRails
     end
 
     def api_url
-      "https://api:#{api_key}@#{mailgun_host}/v3/#{domain}"
+      "https://api:#{api_key}@#{api_host}/v3/#{domain}"
     end
   end
 end
